@@ -1,11 +1,12 @@
 <?php
+session_start();
 include_once('config/setup.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign up</title>
+    <title>Camagru</title>
 </head>
 <body>
 	<h1 class="header">Sign up</h1>
@@ -20,5 +21,9 @@ include_once('config/setup.php');
         <input type="password" name="password" placeholder="password">
         <input type="submit" name="submit" value="OK">
     </form>
+    <a href="forgot.php">Forgot password</a>
 </body>
 </html>
+<?php
+    var_dump($_SESSION);
+?>
