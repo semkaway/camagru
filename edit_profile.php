@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
+<?php include ("includes/header.php");?>
 	<title>Edit profile</title>
 </head>
 <body>
-	<a href="logout.php">Log out</a>
 	<p>Change password</p>
 	<form action="edit_pass.php" name="edit" method="post">
 		Old password: <input type="password" name="old" value="">
@@ -23,7 +20,7 @@
 	<form action="edit_email.php" name="edit" method="post">
 		New email: <input type="text" name="email" value="">
 		<br />
-		<input id="button" type="submit" name="submit" value="OK">
+		<input class="button" type="submit" name="submit" value="OK">
 	</form>
 </body>
 </html>

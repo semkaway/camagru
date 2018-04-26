@@ -36,6 +36,21 @@ if ($_POST["login"] != "") {
 	}
 }
 
+if ($_POST["email"] != "") {
+	$result = $db->prepare("SELECT COUNT(email) FROM users WHERE email = :email");
+	$result->execute(['email' => $_POST["email"]]);
+	$number_of_rows = $result->fetchColumn(); 
+	if ($number_of_rows > 0) {
+		?>
+		<script type="text/javascript">
+			alert("User with this email already exists!");
+			window.location.href = 'index.php';
+		</script>
+		<?php
+		$valid = 1;
+	}
+}
+
 $rest_pass = strstr($_POST["email"], '@');
 
 if (strpos($_POST["email"], "@") == false || strpos($rest_pass, ".") == false || strstr($rest_pass, '.') == ".") {

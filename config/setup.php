@@ -22,7 +22,8 @@ try {
 	login VARCHAR(255) NOT NULL, 
 	email VARCHAR(255) NOT NULL,
 	password VARCHAR(150) NOT NULL,
-	validation VARCHAR(255) NOT NULL)";
+	validation VARCHAR(255) NOT NULL,
+	recovery VARCHAR(255) DEFAULT 'ALL OK' NOT NULL)";
 	$db->exec($sql);
 	} catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();

@@ -8,7 +8,7 @@ require_once('config/database.php');
     <title>Validation</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1 class="header">Hello</h1>
     <?php
     $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -21,12 +21,12 @@ require_once('config/database.php');
     $check->execute(['login' => $login]);
     $check_key = $check->fetchColumn();
     if ($check_key == $key) {
-        echo "Validation successful, you can now log in";?><br><?php
+        echo "Verification successful, you can now log in";?><br><?php
         $stmt = $db->prepare("UPDATE users SET validation = 'OK' WHERE login = :login");
         $stmt->execute(['login' => $login]);
     }
     ?>
-    <a href="http://localhost:8100/camagru/index.php">Main page</a>
+    <a href="index.php">Main page</a>
     <?php
     if ($check_key != $key) {
         echo "Oops, something went wrong. Please, try again later";
