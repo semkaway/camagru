@@ -10,44 +10,50 @@ include ("includes/header.php");
 		<video id="player" autoplay></video>
 		</div>
 		<button id="capture" class="button">Capture</button>
-		<canvas id="canvas" width=320 height=240></canvas>
-		<script>
-		  const player = document.getElementById('player');
-		  const canvas = document.getElementById('canvas');
-		  const context = canvas.getContext('2d');
-		  const captureButton = document.getElementById('capture');
-
-		  const constraints = {
-		    video: true,
-		  };
-
-		  captureButton.addEventListener('click', () => {
-		    // Draw the video frame to the canvas.
-		    context.drawImage(player, 0, 0, canvas.width, canvas.height);
-		    //convertCanvasToImage(canvas);
-		  });
-
-		  // Attach the video stream to the video element and autoplay.
-		  navigator.mediaDevices.getUserMedia(constraints)
-		    .then((stream) => {
-		      player.srcObject = stream;
-		    });
-		    // Converts canvas to an image
-			// function convertCanvasToImage(canvas) {
-				image = canvas.toDataURL("image/png");
-				var ajax = new XMLHttpRequest();
-				ajax.open("POST",'testSave.php',false);
-				ajax.setRequestHeader('Content-Type', 'application/upload');
-				ajax.send(image);
-			//}
-			// function printing(canvas) {
-			// 	my_window = window.open('', 'mywindow', 'status=1,width=350,height=150');
-			// 	var image = new Image();
-			// 	image.src = canvas.toDataURL("image/png");
-			// 	my_window.document.write(image);
-			// }
-			setTimeout("location.href = 'testSave.php';", 6000);
-		</script>
+		<canvas id="canvas" width=320 height=240></canvas> 
+        <form method="post" accept-charset="utf-8" name="form1">
+            <input name="hidden_data" id='hidden_data' type="hidden"/>
+        </form>
 	<input type="file" accept="image/*">
+	<script type="text/javascript">
+			const player = document.getElementById('player');
+			const canvas = document.getElementById('canvas');
+			const context = canvas.getContext('2d');
+			const captureButton = document.getElementById('capture');
+			
+			const constraints = {
+				video: true,
+			};
+
+			captureButton.addEventListener('click', () => {
+			    // Draw the video frame to the canvas.
+				context.drawImage(player, 0, 0, canvas.width, canvas.height);
+                var dataURL = canvas.toDataURL("image/png");
+                document.getElementById('hidden_data').value = dataURL;
+                var fd = new FormData(document.forms["form1"]);
+ 
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'upload_data.php', true);
+ 
+                xhr.upload.onprogress = function(e) {
+                    if (e.lengthComputable) {
+                        var percentComplete = (e.loaded / e.total) * 100;
+                        console.log(percentComplete + '% uploaded');
+                        alert('Succesfully uploaded');
+                    }
+                };
+ 
+                xhr.onload = function() {
+ 
+                };
+                xhr.send(fd);
+			});
+
+			  // Attach the video stream to the video element and autoplay.
+			navigator.mediaDevices.getUserMedia(constraints)
+				.then((stream) => {
+			    	player.srcObject = stream;
+				});
+        </script>
 </body>
 </html>
