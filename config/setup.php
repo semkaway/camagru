@@ -26,6 +26,22 @@ try {
 	recovery VARCHAR(255) DEFAULT 'ALL OK' NOT NULL)";
 	$db->exec($sql);
 	} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-}
+    	echo 'Connection failed: ' . $e->getMessage();
+	}
+
+try {
+	$db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$table = 'pictures';
+
+	$sql ="CREATE TABLE IF NOT EXISTS $table(
+	ID INT(11) AUTO_INCREMENT PRIMARY KEY,
+	user_id INT(11),
+	photo VARCHAR(255) NOT NULL, 
+	element VARCHAR(255) NOT NULL)";
+	$db->exec($sql);
+	} catch (PDOException $e) {
+    	echo 'Connection failed: ' . $e->getMessage();
+	}
 ?>

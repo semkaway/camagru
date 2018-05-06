@@ -1,3 +1,7 @@
+body {
+	background-color: #eef2c9;
+}
+
 .header {
 	text-align: center;
 }
@@ -11,4 +15,8 @@
 #player {
 	height: 100%;
 	width: 100%;
+}
+
+.icons {
+	height: 10vw;
 }
