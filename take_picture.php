@@ -10,7 +10,7 @@ include ("includes/header.php");
 		<video id="player" autoplay></video>
 		</div>
 		<button type="button" id="capture" class="button">Capture</button>
-		<canvas id="canvas" width=500 height=400></canvas> 
+		<canvas id="canvas" width=500 height=350></canvas> 
         <form method="post" accept-charset="utf-8" name="form1">
             <input name="hidden_data" id='hidden_data' type="hidden"/>
             <input name="selected_elem" id='selected_elem' type="hidden"/>
@@ -20,6 +20,8 @@ include ("includes/header.php");
 				<img class="icons" src="img/additions/sunrise.png">
 	    	<input type="radio" name="icon" value="img/additions/sausage.png" />
 				<img class="icons" src="img/additions/sausage.png">
+			<input type="radio" name="icon" value="img/additions/cat.png" />
+				<img class="icons" src="img/additions/cat.png">
     	</div>
 	<form method="post" enctype="multipart/form-data">
 		    Select image to upload:
@@ -49,7 +51,7 @@ include ("includes/header.php");
 				}
 
 				context.drawImage(player, 0, 0, canvas.width, canvas.height);
-                var dataURL = canvas.toDataURL("image/png");
+                var dataURL = canvas.toDataURL("image/jpeg");
                 document.getElementById('hidden_data').value = dataURL;
                 document.getElementById('selected_elem').value = sosiska;
                 var fd = new FormData(document.forms["form1"]);
@@ -57,7 +59,7 @@ include ("includes/header.php");
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'upload_data.php', true);
                 xhr.send(fd);
-				window.location.href = 'take_picture.php';
+				setTimeout("location.href = 'take_picture.php';", 2);
 			});
 
 			uploadButton.addEventListener('click', () => {
@@ -82,7 +84,7 @@ include ("includes/header.php");
 		            xhr.open('POST', 'upload_data.php', true);
 		            xhr.send(fd);
 				}
-				setTimeout("location.href = 'take_picture.php';", 2)
+				setTimeout("location.href = 'take_picture.php';", 2);
 			});
 
 			  // Attach the video stream to the video element and autoplay.

@@ -39,7 +39,8 @@ try {
 	ID INT(11) AUTO_INCREMENT PRIMARY KEY,
 	user_id INT(11),
 	photo VARCHAR(255) NOT NULL, 
-	element VARCHAR(255) NOT NULL)";
+	element VARCHAR(255) NOT NULL,
+	final_img VARCHAR(255))";
 	$db->exec($sql);
 	} catch (PDOException $e) {
     	echo 'Connection failed: ' . $e->getMessage();

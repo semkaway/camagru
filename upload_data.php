@@ -13,16 +13,18 @@
 	$upload_dir = "img/upload/";
 	$rawData = $_POST['hidden_data'];
 	$elem = $_POST['selected_elem'];
+
+	$extension = substr(strtok(strchr($rawData, '/'), ';'), 1);
+
 	$img = explode(',', $rawData);
 	$unencoded = base64_decode($img[1]);
-	$file = $upload_dir . mktime() . ".png";
+	$file = $upload_dir . mktime() . "." . $extension;
 	file_put_contents($file, $unencoded);
 
 	$log_check = $db->prepare("SELECT id FROM users WHERE login = :login");
 	$log_check->execute(['login' => $_SESSION['user']]);
 	$id = $log_check->fetchColumn();
-
-	$stmt = $db->prepare("INSERT INTO pictures(user_id, photo, element) VALUES (:user_id, :photo, :element)");
-	$stmt->execute(['user_id' => $id, 'photo' => $file, 'element' => $elem]);
-	combine_imgs($file, $elem);
+	$final_img = combine_imgs($file, $elem);
+	$stmt = $db->prepare("INSERT INTO pictures(user_id, photo, element, final_img) VALUES (:user_id, :photo, :element, :final_img)");
+	$stmt->execute(['user_id' => $id, 'photo' => $file, 'element' => $elem, 'final_img' => $final_img]);
 ?>
