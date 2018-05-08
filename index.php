@@ -15,7 +15,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $allPics->execute();
         $id = $allPics->fetchAll(PDO::FETCH_COLUMN, 0);
         foreach ($id as $picture) {
-            ?><img class="gallery_img" src="<?php echo $picture; ?>"><br><?php
+            ?><img class="main_gallery_img" src="<?php echo $picture; ?>"><br><?php
         }
     ?>
 </body>

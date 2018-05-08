@@ -8,18 +8,24 @@
 	?>
 		<title>Profile</title>
 	</head>
-	<a href="edit_profile.php">Edit data</a>
-	<h1 class="header">Your pics</h1>
-	<?php
+	<body>
+		<a href="edit_profile.php">Edit data</a>
+		<h1 class="header">Your pics</h1>
+		<div id="overlay" onclick="off()"></div>
+    	<div style="padding:20px">
+		<?php
 
-	$log_check = $db->prepare("SELECT id FROM users WHERE login = :login");
-	$log_check->execute(['login' => $_SESSION['user']]);
-	$id = $log_check->fetchColumn();
+		$log_check = $db->prepare("SELECT id FROM users WHERE login = :login");
+		$log_check->execute(['login' => $_SESSION['user']]);
+		$id = $log_check->fetchColumn();
 
-	$allPics = $db->prepare("SELECT final_img FROM pictures WHERE user_id = :user_id");
-	$allPics->execute(['user_id' => $id]);
-    $pic = $allPics->fetchAll(PDO::FETCH_COLUMN, 0);
-    foreach ($pic as $picture) {
-        ?><img class="gallery_img" src="<?php echo $picture; ?>"><br><?php
-    }
-?>
+		$allPics = $db->prepare("SELECT final_img FROM pictures WHERE user_id = :user_id");
+		$allPics->execute(['user_id' => $id]);
+	    $pic = $allPics->fetchAll(PDO::FETCH_COLUMN, 0);
+	    ?>
+	    <div class="imageContainer"> <?php
+		    foreach ($pic as $picture) {
+		        ?><img class="profile_gallery_img" src="<?php echo $picture; ?>"><br><?php
+		    } ?>
+		</div>
+	</body>
