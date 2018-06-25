@@ -9,9 +9,9 @@
 		<title>Profile</title>
 	</head>
 	<body>
-		<h1 class="header">Your pics</h1>
-		<div id="overlay" onclick="off()"></div>
-    	<div style="padding:20px">
+		<!-- <h1 class="header">Your pics</h1> -->
+		<!-- <div id="overlay" onclick="off()"></div>
+    	<div style="padding:20px"> -->
 		<?php
 
 		$log_check = $db->prepare("SELECT id FROM users WHERE login = :login");
@@ -24,8 +24,8 @@
 
 		if ($valid_email != 'OK') {
 			?>
-			<div class="text-box">
-				<p>Please, validate your email</p>
+			<div>
+				<marquee>Please, validate your email</marquee>
 			</div>
 			<?php
 		}
@@ -36,38 +36,40 @@
 	    ?>
 	    <div class="wrapper">
             <div class="sidebar">
+            	<div>
+                   	<a href="index.php"><img class="logo" src="img/logo.png"></a>
+               	<!-- </div> -->
                 <div>
-                    <?php if (isloggedin() == false) : ?>
+                    <a href="index.php">
                         <div class="button">
-                            <a href="login_form.php">Log in</a>
+                            Home
                         </div>
+                    </a>
+                    <a href="take_picture.php">
                         <div class="button">
-                            <a href="signup_form.php">Sign up</a>
+                            Take picture
                         </div>
+                    </a>
+                    <a href="profile.php">
                         <div class="button">
-                            <a href="index.php">Home</a>
+                            My profile
                         </div>
-                    <?php endif ?>
-                    <?php if (isloggedin() == true) : ?>
+                    </a>
+                    <a href="logout.php">
                         <div class="button">
-                            <a href="index.php">Home</a>
+                            Log out
                         </div>
+                    </a>
+                    <a href="edit_profile.php">
                         <div class="button">
-                            <a href="take_picture.php">Take picture</a>
+                        	Edit data
                         </div>
-                        <div class="button">
-                            <a href="profile.php">My profile</a>
-                        </div>
-                        <div class="button">
-                            <a href="logout.php">Log out</a>
-                        </div>
-                        <div class="button">
-                        	<a href="edit_profile.php">Edit data</a>
-                        </div>
-                    <?php endif ?>
+                    </a>
                 </div>
             </div>
+            </div>
             <div class="gallery">
+            	<div class="header" id="grid-header">Your pics</div>
                 <?php
                 if (count($pic) == 0) {
                 	?>
@@ -80,7 +82,7 @@
                 	<?php
                 }
                 foreach ($pic as $picture) {
-	        		?><img class="profile_gallery_img" src="<?php echo $picture; ?>"><?php
+	        		?><div><a href="<?php echo $picture; ?>"><img class="profile-img" src="<?php echo $picture; ?>"></a></div><?php
 	    		}
                 ?>
             </div>
