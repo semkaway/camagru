@@ -51,9 +51,7 @@ include ("includes/header.php");
 				</label>
 				<input type="radio" name="icon" id="cat" value="img/additions/cat.png" />
 	    	</div>
-	    	<!-- <form action="thumbnails.php"> -->
-				<button type="submit" id="capture" class="button" onclick="setTimeout(function() { makeRequest('thumbnails.php', 'thumbnails'); }, 700);">Take picture</button>
-			<!-- </form> -->
+				<button type="submit" id="capture" class="button" onclick="setTimeout(function() { makeRequest('thumbnails'); }, 700);">Take picture</button>
 			<div>
 		        <form method="post" accept-charset="utf-8" name="form1">
 		            <input name="hidden_data" id='hidden_data' type="hidden"/>
@@ -64,7 +62,7 @@ include ("includes/header.php");
 				<form method="post" enctype="multipart/form-data" id="upload-form">
 				    Select image to upload:
 				    <input type="file" name="fileToUpload" id="fileToUpload">
-				    <button type="button" id="upload" class="button" onclick="setTimeout(function() { makeRequest('thumbnails.php', 'thumbnails'); }, 700);">Upload</button>
+				    <button type="button" id="upload" class="button" onclick="setTimeout(function() { makeRequest('thumbnails'); }, 700);">Upload</button>
 				</form>
 			</div>
 			<div id="thumbnails">
@@ -104,7 +102,7 @@ include ("includes/header.php");
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'upload_data.php', true);
                 xhr.send(fd);
-			});
+				});
 
 			uploadButton.addEventListener('click', () => {
 				var radios = document.getElementsByName('icon');
@@ -135,7 +133,7 @@ include ("includes/header.php");
 			    	player.srcObject = stream;
 				});
 
-			function makeRequest(url, divID) { 
+			function makeRequest(divID) { 
 				if (window.XMLHttpRequest)
 			    	httpRequest = new XMLHttpRequest();
 				if (!httpRequest) {
@@ -145,7 +143,7 @@ include ("includes/header.php");
 				httpRequest.onreadystatechange = function() { 
 					alertContents(httpRequest, divID);
 				};
-				httpRequest.open('GET', url, true);
+				httpRequest.open('GET', 'thumbnails.php', true);
 				httpRequest.send('');
 			}
 

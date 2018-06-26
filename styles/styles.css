@@ -1,3 +1,5 @@
+/* GENERAL STYLES */
+
 html {
 	font-family: 'Old Standard TT', serif;
 	background-color: #ffffff;
@@ -43,24 +45,6 @@ marquee {
 	background-color: rgba(203, 90, 66, 1);
 }
 
-.gallery-img:hover, .profile-img:hover, #thumbnails > div:hover {
-	opacity: 0.5;
-}
-
-#photo_div {
-	height: 60vh;
-}
-
-#player {
-	height: 100%;
-	width: 100%;
-}
-
-.icons {
-	height: 10vw;
-}
-
-
 .text-box {
 	width: 10vw;
 	margin: 0 auto;
@@ -70,6 +54,14 @@ marquee {
 .title {
 	text-align: center;
 }
+
+/* GENERAL STYLES END */
+
+/* GENERAL GALLERY STYLES */
+
+/*.gallery-img:hover, .profile-img:hover, #thumbnails > div:hover {
+	opacity: 0.5;
+}*/
 
 .wrapper {
   display: grid;
@@ -82,7 +74,7 @@ marquee {
   font-size: 1rem;
 }
 
-.gallery {
+/*.gallery {
   display: grid;
   grid-template-columns: repeat(3, 2fr);
   grid-auto-rows: 15rem;
@@ -101,7 +93,7 @@ marquee {
     max-width: 100%;
     max-height: 100%;
 }
-
+*/
 .sidebar {
 	background-image: url("../img/sidebar4.png");
 	background-size: contain;
@@ -117,6 +109,29 @@ marquee {
 	font-size: 1.2rem;
 }
 
+#grid-header {
+	grid-column: 1/4;
+	align-self: start;
+}
+
+/* GENERAL GALLERY STYLES END */
+
+/* TAKE PICTURE PAGE */
+
+#photo_div {
+	height: 60vh;
+	grid-column: 1/2;
+}
+
+#player {
+	height: 100%;
+	width: 100%;
+}
+
+.icons {
+	height: 10vw;
+}
+
 .take-picture-layout {
 	display: grid;
 	grid-template-columns: 3fr 1fr;
@@ -128,13 +143,8 @@ marquee {
 	grid-template-columns: 1fr;
 }
 
-.icons {
-	height: 6vw;
-}
-
-
-#photo-div {
-	grid-column: 1/2;
+#image-options > input{
+	visibility:hidden;
 }
 
 #capture {
@@ -150,10 +160,6 @@ marquee {
 	width: 15vw;
 }
 
-#image-options > input{
-	visibility:hidden;
-}
-
 #thumbnails {
 	grid-column: 1/2;
 	display: grid;grid-template-columns: repeat(3, 1fr);
@@ -164,3 +170,60 @@ marquee {
 .thumbnail-pics {
 	width: 20vw;
 }
+
+/* TAKE PICTURE PAGE END*/
+
+
+/* MAIN GALLERY DESIGN */
+
+.container {
+	max-width: 70vw;
+}
+
+.main-img {
+	display: grid;
+	grid-template-columns: 4fr 2fr;
+	grid-gap: 1rem;
+	margin: 1rem;
+	background-color: #fff6f4;
+}
+
+.main-img img,
+.images img {
+	width: 100%;
+}
+
+.images {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1rem;
+}
+
+/* MAIN GALLERY DESIGN END */
+
+.picture-delete, .picture-like {
+	display: grid;
+	grid-template-rows: 6fr 1fr;
+	grid-gap: 1rem;
+}
+
+.main-img form {
+	display: none;
+}
+
+#like img, #dislike img{
+	width: 2.5vh;
+}
+
+/*.likes {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+#like {
+	background-color: rgba(78, 173, 113, 0.8);
+}
+
+#like:hover {
+	background-color: rgba(78, 173, 113, 1);
+}*/

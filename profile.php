@@ -9,9 +9,6 @@
 		<title>Profile</title>
 	</head>
 	<body>
-		<!-- <h1 class="header">Your pics</h1> -->
-		<!-- <div id="overlay" onclick="off()"></div>
-    	<div style="padding:20px"> -->
 		<?php
 
 		$log_check = $db->prepare("SELECT id FROM users WHERE login = :login");
@@ -38,53 +35,91 @@
             <div class="sidebar">
             	<div>
                    	<a href="index.php"><img class="logo" src="img/logo.png"></a>
-               	<!-- </div> -->
-                <div>
-                    <a href="index.php">
-                        <div class="button">
-                            Home
-                        </div>
-                    </a>
-                    <a href="take_picture.php">
-                        <div class="button">
-                            Take picture
-                        </div>
-                    </a>
-                    <a href="profile.php">
-                        <div class="button">
-                            My profile
-                        </div>
-                    </a>
-                    <a href="logout.php">
-                        <div class="button">
-                            Log out
-                        </div>
-                    </a>
-                    <a href="edit_profile.php">
-                        <div class="button">
-                        	Edit data
-                        </div>
-                    </a>
-                </div>
+	                <div>
+	                    <a href="index.php">
+	                        <div class="button">
+	                            Home
+	                        </div>
+	                    </a>
+	                    <a href="take_picture.php">
+	                        <div class="button">
+	                            Take picture
+	                        </div>
+	                    </a>
+	                    <a href="profile.php">
+	                        <div class="button">
+	                            My profile
+	                        </div>
+	                    </a>
+	                    <a href="logout.php">
+	                        <div class="button">
+	                            Log out
+	                        </div>
+	                    </a>
+	                    <a href="edit_profile.php">
+	                        <div class="button">
+	                        	Edit data
+	                        </div>
+	                    </a>
+	                </div>
+            	</div>
             </div>
-            </div>
-            <div class="gallery">
+            <div class="container">
             	<div class="header" id="grid-header">Your pics</div>
-                <?php
-                if (count($pic) == 0) {
-                	?>
-                	<div class="text-box">
-						<p>It seems like you don't have any pictures yet :( <br> Go on and take some!</p><br>
-						<div class="button">
-                            <a href="take_picture.php">Take picture</a>
+                <div class="main-img">
+                	<div class="picture-delete">
+	                    <img id="current" src="<?php echo $pic[0]; ?>">
+                        <div class="button" id="delete">
+                        	delete photo
                         </div>
-					</div>
-                	<?php
-                }
-                foreach ($pic as $picture) {
-	        		?><div><a href="<?php echo $picture; ?>"><img class="profile-img" src="<?php echo $picture; ?>"></a></div><?php
-	    		}
-                ?>
-            </div>
+	                </div>
+	                <form method="post" accept-charset="utf-8" name="form1">
+		            	<input name="pic-to-delete" id='pic-to-delete' type="hidden"/>
+		        	</form>
+                    <div class="comments">
+                        Box for comments
+                    </div>
+                </div>
+                <div class="images">
+                    <?php
+                    foreach ($pic as $picture) {
+                        ?><img src="<?php echo $picture; ?>"><?php
+                    }
+                    ?>
+                </div>
+        	</div>
         </div>
+        <script type="text/javascript">
+	        const current = document.querySelector('#current');
+	        const images = document.querySelectorAll('.images img');
+	        const opacity = 0.4;
+	        const deleteButton = document.getElementById('delete');
+
+	        images.forEach(func);
+
+	        function func (image) {
+	            image.addEventListener('click', imageClick)
+	        }
+
+	        function imageClick(next) {
+	            images.forEach(img => img.style.opacity = 1);
+	            current.src = next.target.src;
+	            next.target.style.opacity = opacity;
+	        }
+
+	        deleteButton.addEventListener('click', () => {
+
+	        	var answer = confirm("Are you sure you want to delete this picture?");
+				if (answer == true) {
+		        	document.getElementById('pic-to-delete').value = document.querySelector('#current').src;                
+		        	var form = document.querySelector('form');
+	                var fd = new FormData(form);
+
+	                var xhr = new XMLHttpRequest();
+	                xhr.open('POST', 'delete_pic.php', true);
+	                xhr.send(fd);
+	                setTimeout("location.href = 'profile.php';", 0);
+            	}
+			});
+	    </script>
 	</body>
