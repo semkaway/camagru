@@ -201,29 +201,57 @@ marquee {
 
 /* MAIN GALLERY DESIGN END */
 
-.picture-delete, .picture-like {
+/* LIKES DESIGN */
+
+.picture-like {
 	display: grid;
-	grid-template-rows: 6fr 1fr;
 	grid-gap: 1rem;
 }
 
-.main-img form {
+.hidden {
 	display: none;
 }
 
-#like img, #dislike img{
-	width: 2.5vh;
-}
-
-/*.likes {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+#like img {
+	width: 2.6vh;
 }
 
 #like {
-	background-color: rgba(78, 173, 113, 0.8);
+	width: 12vw;
+	background-color: #fff6f4;
+	margin: 0;
 }
 
-#like:hover {
-	background-color: rgba(78, 173, 113, 1);
-}*/
+#amount_of_likes {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+#amount_of_likes div:nth-child(2){
+	font-size: 1.4rem;
+	text-align: left;
+	margin-left: -1rem;
+}
+
+#amount_of_likes img{
+	text-align: left;
+}
+
+/* LIKES DESIGN END*/
+
+/* COMMENTS DESIGN */
+
+.comments {
+	display: grid;
+	grid-template-columns: 1fr;
+	
+	border: solid red 1px;
+}
+
+.new_comment input{
+	width: 90%;
+	margin: 0.8rem;
+	height: 8vh;
+}
+
+/* COMMENTS DESIGN END*/

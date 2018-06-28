@@ -7,4 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
 	<link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link rel="icon" 
+      type="image/png" 
+      href="favicon.png">
 	<!-- <a href="index.php"><img class="header-img" src="img/header.png"></a> -->

@@ -14,7 +14,7 @@ function send_mail($login, $email, $validate) {
     $mail_message = "<strong>Hello, ".$login."!</strong><br>
                         Thank you for registration in our application. There is just one more step left for you to fully experience the app.<br>
                         Please, click on the link below:<br>
-                        <a href='http://localhost:8100/camagru/validate.php?login=".$login."&key=".$validate."'>Verify my email</a><br>
+                        <a href='http://localhost:8080/camagru/validate.php?login=".$login."&key=".$validate."'>Verify my email</a><br>
                         If you got this letter by mistake, please, ignore it.<br>
                         Have a good day!";
     $encoding = "utf-8";

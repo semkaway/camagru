@@ -33,7 +33,6 @@ function combine_imgs() {
 
 	imagecopyresampled($combined_img, $image_a, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
 	imagecopyresampled($combined_img, $image_b, 0, 0, 0, 0, $width_orig, $height_orig, $width_elem, $height_elem);
-	//imagepng($combined_img);
 
 	$filename = "any_name"; 
 	$directory = "upload/".$filename.".png";

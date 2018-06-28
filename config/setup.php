@@ -55,9 +55,9 @@ try {
 	$sql ="CREATE TABLE IF NOT EXISTS $table(
 	ID INT(11) AUTO_INCREMENT PRIMARY KEY,
 	picture_id INT(11),
-	name varchar(64) default '', 
-	comment text NOT NULL,
-	comment_date int(11) NOT NULL default '0')";
+	user_id_comment INT(11) DEFAULT 0, 
+	user_id_photo INT(11) DEFAULT 0, 
+	comment text NOT NULL)";
 	$db->exec($sql);
 	} catch (PDOException $e) {
     	echo 'Connection failed: ' . $e->getMessage();
@@ -72,9 +72,8 @@ try {
 	$sql ="CREATE TABLE IF NOT EXISTS $table(
 	ID INT(11) AUTO_INCREMENT PRIMARY KEY,
 	picture_id INT(11),
-	user_id_liked varchar(64), 
-	user_id_photo VARCHAR(255) NOT NULL,
-	value VARCHAR(255) NOT NULL)";
+	user_id_liked INT(11) DEFAULT 0, 
+	user_id_photo INT(11) DEFAULT 0)";
 	$db->exec($sql);
 	} catch (PDOException $e) {
     	echo 'Connection failed: ' . $e->getMessage();

@@ -15,5 +15,8 @@
 
 	$pic_id = $db->prepare("DELETE FROM pictures WHERE id = :id");
 	$pic_id->execute(['id' => $id]);
+
+	$delete_from_likes = $db->prepare("DELETE FROM likes WHERE picture_id = :id");
+	$delete_from_likes->execute(['id' => $id]);
 	unlink($proper_pic_add);
 ?>
