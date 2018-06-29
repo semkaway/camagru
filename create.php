@@ -78,11 +78,18 @@ if ($_POST["submit"] == "OK") {
 	$email = $_POST['email'];
 	$password = hash('whirlpool', $_POST['password']);
 	$validate = hash("md5", $login.$email.date('mY'));
+	$mail_subject = "Complete your registration to Camagru";
+	$message = "<strong>Hello, ".$login."!</strong><br>
+                        Thank you for registration in our application. There is just one more step left for you to fully experience the app.<br>
+                        Please, click on the link below:<br>
+                        <a href='http://localhost:8080/camagru/validate.php?login=".$login."&key=".$validate."'>Verify my email</a><br>
+                        If you got this letter by mistake, please, ignore it.<br>
+                        Have a good day!";
 
 	if ($valid == 0) {
 		$stmt = $db->prepare("INSERT INTO users(login, email, password, validation) VALUES (:login, :email, :password, :validation)");
 		$stmt->execute(['login' => $login, 'email' => $email, 'password' => $password, 'validation' => $validate]);
-		send_mail($login, $email, $validate);
+		send_mail($email, $mail_subject, $message);
 	}
 }
 else

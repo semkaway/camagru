@@ -97,7 +97,7 @@ marquee {
 .sidebar {
 	background-image: url("../img/sidebar4.png");
 	background-size: contain;
-	/*height: 100vh;*/
+	height: 100vh;
 }
 
 .sidebar > div {
@@ -244,14 +244,36 @@ marquee {
 .comments {
 	display: grid;
 	grid-template-columns: 1fr;
-	
-	border: solid red 1px;
+	grid-template-rows: minmax(min-content, max-content);
+	grid-gap: 0.5rem;
 }
 
-.new_comment input{
+.new_comment {
+	align-self: start;
+}
+
+.new_comment textarea{
 	width: 90%;
 	margin: 0.8rem;
 	height: 8vh;
+	padding: 0.2rem;
+}
+
+#comment {
+	align-self: start;
+}
+
+#comments_texts {
+	display: grid;
+	grid-auto-rows: min-content;
+	grid-gap: 0.5rem;
+	overflow: auto;
+	height: 25vh
+}
+
+#comments_texts div {
+	margin-left: 0.5rem;
+	background-color: #fffaf9;
 }
 
 /* COMMENTS DESIGN END*/

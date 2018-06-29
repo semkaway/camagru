@@ -9,8 +9,6 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     <title>Camagru</title>
 </head>
 <body>
-	<script type="text/javascript">
-	</script>
     <div class="wrapper">
         <div class="sidebar">
             <div>
@@ -63,7 +61,8 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 <div class="main-img">
                     <div class="picture-like">
                         <img id="current" src="<?php echo $id[0]; ?>">
-                            <div class="button" id="like" onclick="setTimeout(function() { makeRequest('amount_of_likes', 'update_likes.php', 'form1'); }, 100);">
+                        <?php if (isloggedin() == true) : ?>
+                            <div class="button" id="like" onclick="setTimeout(function() { makeRequest('amount_of_likes', 'update_likes.php', 'form1'); }, 300);">
                                     <form class="hidden" method="post" accept-charset="utf-8" name="form1">
                                         <input name="photo_id" id='photo_id' type="hidden"/>
                                     </form>
@@ -97,24 +96,48 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                         </div>
                                     </div>
                             </div>
+                            <?php endif ?>
                     </div>
                     <div class="comments">
+                        <?php if (isloggedin() == true) : ?>
                         <form class="new_comment" name="comments_form">
-                            <input type="text" name="comment_text" id="comment_text" placeholder="Your comment...">
+                            <textarea name="comment_text" id="comment_text" placeholder="Your comment..."></textarea>
                             <input name="pic_id" id='pic_id' type="hidden"/>
+                            <div class="button" value="Comment" id="comment" onclick="setTimeout(function() { makeRequest('comments_texts', 'update_comments.php', 'comments_form'); }, 100);">Comment</div>
                         </form>
-                        <div class="button" value="Comment" id="comment" onclick="setTimeout(function() { makeRequest('comments_texts', 'update_comments.php', 'comments_form'); }, 100);">Comment</div>
                         <div id="comments_texts">
                             <?php
                             $allComments = $db->prepare("SELECT comment FROM comments WHERE picture_id = :picture_id");
                             $allComments->execute(['picture_id' => $picture_id]);
                             $comments = $allComments->fetchAll(PDO::FETCH_COLUMN, 0);
+
                             foreach ($comments as $comment) {
-                                ?><div><?php echo $comment; ?></div><?php
+                                ?><div><?php 
+                                $user = $db->prepare("SELECT user_id_comment FROM comments WHERE comment= :comment");
+                                $user->execute(['comment' => $comment]);
+                                $id_user = $user->fetchColumn();
+
+                                $user = $db->prepare("SELECT login FROM users WHERE id = :id");
+                                $user->execute(['id' => $id_user]);
+                                $login = $user->fetchColumn();
+
+                                echo "<strong>".$login."</strong>"." ".$comment; ?></div><?php
                             }
                             ?>
                         </div>
-                        <div class="button" value="Load more comments">Load more comments</div>
+                        <?php endif ?>
+                        <?php if (isloggedin() == false) : ?>
+                        <div class="header">
+                            welcome!<br>
+                            <div class="button">
+                            <a href="login_form.php">Log in</a>
+                            </div><br>OR
+                            <div class="button">
+                                <a href="signup_form.php">Sign up</a>
+                            </div><br>to like and comment
+                        </div>
+                        <?php endif ?>
+                        
                     </div>
                 </div>
                 <div class="images">
@@ -146,12 +169,12 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             next.target.style.opacity = opacity;
 
             makeRequest('amount_of_likes', 'update_likes.php', 'form1');
-            //makeRequest('comments_texts', 'update_comments.php', 'comments_form');
-            // makeRequestComments('comments_texts');
+            setTimeout(function() { makeRequest('comments_texts', 'update_comments.php', 'comments_form'); }, 50);
         }
 
         function makeRequest(divID, script, form) {
-        	document.getElementById('photo_id').value = current.src; 
+        	document.getElementById('photo_id').value = current.src;
+            document.getElementById('pic_id').value = current.src; 
         	var fd = new FormData(document.forms[form]);
                 if (window.XMLHttpRequest)
                     httpRequest = new XMLHttpRequest();
@@ -172,7 +195,6 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     document.getElementById(divID).innerHTML = httpRequest.responseText;
                 } else {
                     alert('There was a problem with the request. '+ httpRequest.status);
-
                 }
             }
         }
@@ -191,13 +213,10 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             var fd = new FormData(document.forms["comments_form"]);
 
-            for (var value of fd.values()) {
-               console.log(value); 
-            }
-
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'comments.php', true);
             xhr.send(fd);
+            document.getElementById('comment_text').value = '';
         });
     </script>
 </body>

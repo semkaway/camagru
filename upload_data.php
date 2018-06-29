@@ -32,8 +32,6 @@
 	$photo_id->execute(['final_img' => $final_img]);
 	$picture_id = $photo_id->fetchColumn();
 
-	// $var = $db->prepare("INSERT INTO likes(picture_id) VALUES (:picture_id)");
-	// $var->execute(['picture_id' => $picture_id]);
 	unlink($file);
 	rmdir("img/upload");
 ?>

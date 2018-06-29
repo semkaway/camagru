@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require_once('config/database.php');
+	include ("functions/functions.php");
 	$db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -35,28 +36,11 @@
 		$status_check = $db->prepare("SELECT email FROM users WHERE id = :id");
 		$status_check->execute(['id' => 	$user_id_photo]);
 		$email = $status_check->fetchColumn();
-
-		$from_name = "Camagru";
-	    $from_mail = "kvilna@student.unit.ua";
 	    $mail_subject = "Someone liked your picture!";
 	    $mail_message = "<strong>Hello, ".$login_photo."!</strong><br>".
 	                        $_SESSION['user']." just liked one of your pictures!";
-	    $encoding = "utf-8";
-	    $subject_preferences = array(
-	        "input-charset" => $encoding,
-	        "output-charset" => $encoding,
-	        "line-length" => 76,
-	        "line-break-chars" => "\r\n"
-	    );
 
-	    $header = "Content-type: text/html; charset=".$encoding." \r\n";
-	    $header .= "From: ".$from_name." <".$from_mail."> \r\n";
-	    $header .= "MIME-Version: 1.0 \r\n";
-	    $header .= "Content-Transfer-Encoding: 8bit \r\n";
-	    $header .= "Date: ".date("r (T)")." \r\n";
-	    $header .= iconv_mime_encode("Subject", $mail_subject, $subject_preferences);
-
-	    $mail = mail($email, $mail_subject, $mail_message, $header);
+	    send_mail($email, $mail_subject, $mail_message);
 	} else {
 		$stmt = $db->prepare("DELETE FROM likes WHERE picture_id = :picture_id AND user_id_liked = :user_id_liked");
 		$stmt->execute(['picture_id' => $picture_id, 'user_id_liked' => $id]);
