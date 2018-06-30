@@ -17,7 +17,7 @@ marquee {
 	font-size: 2.5rem;
 }
 
-.header {
+.header, .message-logged-out {
 	text-align: center;
 	font-family: 'Oswald', sans-serif;
 	font-size: 2.5rem;
@@ -30,7 +30,6 @@ marquee {
 }
 
 .button {
-	/*background-color: rgba(169, 58, 35, 0.8);*/
 	background-color: rgba(203, 90, 66, 0.8);
 	margin: 0.4rem;
 	padding: 0.3rem;
@@ -55,13 +54,14 @@ marquee {
 	text-align: center;
 }
 
+.message-logged-out .button {
+	height: 4vh;
+	padding-top: 3vh;
+}
+
 /* GENERAL STYLES END */
 
 /* GENERAL GALLERY STYLES */
-
-/*.gallery-img:hover, .profile-img:hover, #thumbnails > div:hover {
-	opacity: 0.5;
-}*/
 
 .wrapper {
   display: grid;
@@ -74,26 +74,6 @@ marquee {
   font-size: 1rem;
 }
 
-/*.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 2fr);
-  grid-auto-rows: 15rem;
-  grid-gap: 0.5rem;
-}
-
-.gallery > div {
-  position: relative;
-}
-
-.gallery-img, .profile-img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    max-width: 100%;
-    max-height: 100%;
-}
-*/
 .sidebar {
 	background-image: url("../img/sidebar4.png");
 	background-size: contain;
@@ -189,11 +169,11 @@ marquee {
 }
 
 .main-img img,
-.images img {
+#images img {
 	width: 100%;
 }
 
-.images {
+#images {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 1rem;
@@ -225,15 +205,16 @@ marquee {
 #amount_of_likes {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	margin: 1rem;
 }
 
-#amount_of_likes div:nth-child(2){
+#amount_of_likes div:nth-child(2) {
 	font-size: 1.4rem;
 	text-align: left;
 	margin-left: -1rem;
 }
 
-#amount_of_likes img{
+#amount_of_likes img {
 	text-align: left;
 }
 
@@ -241,11 +222,16 @@ marquee {
 
 /* COMMENTS DESIGN */
 
-.comments {
+/*.comments {
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: minmax(min-content, max-content);
 	grid-gap: 0.5rem;
+}*/
+
+#picture-by {
+	margin: 0.5rem;
+	text-transform: uppercase;
 }
 
 .new_comment {
@@ -268,7 +254,7 @@ marquee {
 	grid-auto-rows: min-content;
 	grid-gap: 0.5rem;
 	overflow: auto;
-	height: 25vh
+	height: 29vh;
 }
 
 #comments_texts div {
