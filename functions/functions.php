@@ -6,8 +6,9 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 function isloggedin() {
-    if ($_SESSION['user'] != '') {
-        return true;
+    if (isset($_SESSION['user'])) {
+        if ($_SESSION['user'] != '')
+            return true;
     }
     else {
         return false;
@@ -36,14 +37,12 @@ function combine_imgs($file, $elem) {
 
 	if(!$image_a)
     {
-        /* Create a blank image */
         $image_a  = imagecreatetruecolor(150, 30);
         $bgc = imagecolorallocate($image_a, 255, 255, 255);
         $tc  = imagecolorallocate($image_a, 0, 0, 0);
 
         imagefilledrectangle($image_a, 0, 0, 150, 30, $bgc);
 
-        /* Output an error message */
         imagestring($image_a, 1, 5, 5, 'Error loading ' . $imgname, $tc);
     }
 
@@ -51,7 +50,7 @@ function combine_imgs($file, $elem) {
 	imagesavealpha($image_a, true);
 
 	imagecopyresampled($combined_img, $image_a, 0, 0, 0, 0, $width, $height, $width, $height);
-	imagecopyresampled($combined_img, $image_b, 0, $height/3, 0, 0, $width/2, $height/1.5, $width_elem, $height_elem);
+	imagecopyresampled($combined_img, $image_b, 300, 0, 0, 0, $width/3, $height/2, $width_elem, $height_elem);
 
 	if (!file_exists("img/result")) {
     	mkdir("img/result");

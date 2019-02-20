@@ -15,7 +15,7 @@ $check_key = $check->fetchColumn();
 if ($check_key == $key) {
     ?>
     <script type="text/javascript">
-        setTimeout("location.href = 'confirm.html';",0);
+        setTimeout("location.href = 'confirm.php';",0);
     </script>
     <?php
 }

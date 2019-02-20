@@ -5,9 +5,9 @@
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	if ($_POST["login"] != "" && $_POST['password'] != "" && $_POST["submit"] == "OK") {
+	if ($_POST["submit"] == "OK") {
 		$log_check = $db->prepare("SELECT COUNT(login) FROM users WHERE login = :login");
-		$log_check->execute(['login' => $_POST["login"]]);
+		$log_check->execute(['login' => htmlspecialchars($_POST["login"], ENT_QUOTES, 'UTF-8')]);
 		$check_login = $log_check->fetchColumn();
 		if ($check_login != 1) {
 			?>
@@ -18,7 +18,7 @@
 		<?php
 		}
 		$result = $db->prepare("SELECT password FROM users WHERE login = :login");
-		$result->execute(['login' => $_POST["login"]]);
+		$result->execute(['login' => htmlspecialchars($_POST["login"], ENT_QUOTES, 'UTF-8')]);
 		$check_pass = $result->fetchColumn();
 		if (hash('whirlpool', $_POST['password']) != $check_pass) {
 			?>
@@ -29,22 +29,14 @@
 		<?php
 		} else {
 			$email = $db->prepare("SELECT email FROM users WHERE login = :login");
-			$email->execute(['login' => $_POST["login"]]);
+			$email->execute(['login' => htmlspecialchars($_POST["login"], ENT_QUOTES, 'UTF-8')]);
 			$check_mail = $email->fetchColumn();
-			$_SESSION['user'] = $_POST["login"];
+			$_SESSION['user'] = htmlspecialchars($_POST["login"], ENT_QUOTES, 'UTF-8');
 			?>
 			<script type="text/javascript">
 				window.location.href = 'profile.php';
 			</script>
 			<?php
 		}
-	}
-	else if (($_POST["login"] == "" || $_POST['password'] == "") && $_POST["submit"] == "OK") {
-	?>
-	<script type="text/javascript">
-		alert("All fields must be filled!");
-		window.location.href = 'index.php';
-	</script>
-	<?php
 	}
 ?>

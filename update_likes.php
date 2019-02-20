@@ -6,7 +6,7 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $pic_address = $_POST['photo_id'];
-$proper_pic_add = substr($pic_address, strpos($pic_address, "u") + 2);
+$proper_pic_add = strstr($pic_address, "img");
 
 $log_check = $db->prepare("SELECT id FROM users WHERE login = :login");
 $log_check->execute(['login' => $_SESSION['user']]);

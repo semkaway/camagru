@@ -14,7 +14,7 @@ require_once('config/database.php');
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $login = $_GET['login'];
+    $login = htmlspecialchars($_GET['login'], ENT_QUOTES, 'UTF-8');
     $key = $_GET['key'];
 
     $check = $db->prepare("SELECT validation FROM users WHERE login = :login");

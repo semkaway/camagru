@@ -1,7 +1,4 @@
-<?php
-	session_start();
-	?>
-	<a href="logout.php">Log out</a>
-	<a href="edit_profile.html">Edit data</a>
-	<?php
-?>
+<footer>
+  <p>by<a href="https://profile.intra.42.fr/users/kvilna">
+  Kseniia Vilna</a></p>
+</footer>

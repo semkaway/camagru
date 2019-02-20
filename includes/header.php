@@ -10,4 +10,3 @@
 	<link rel="icon" 
       type="image/png" 
       href="favicon.png">
-	<!-- <a href="index.php"><img class="header-img" src="img/header.png"></a> -->
