@@ -1,0 +1,300 @@
+/* GENERAL STYLES */
+
+html {
+	font-family: 'Old Standard TT', serif;
+	font-size: 1vw;
+	background-color: #ffffff;
+	width: 100%;
+    height: 100%;
+}
+
+.header-page {
+	height: 40px;
+	background-color: #fff6f4;
+}
+
+footer {
+	background-color: #fff6f4;
+	text-align: right;
+	padding: 1rem;
+    height: 40px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+marquee {
+	font-family: 'Old Standard TT', serif;
+	color: red;
+	text-transform: uppercase;
+	font-size: 3.5vh;
+}
+
+.header, .message-logged-out {
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	font-size: 3vw;
+	color: black;
+	text-transform: uppercase;
+}
+
+.logo {
+	width: 19vw;
+}
+
+.button {
+	background-color: rgba(203, 90, 66, 0.8);
+	margin: 0.4rem;
+	padding: 0.3rem;
+	font-family: 'Old Standard TT', serif;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 1.2vw;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: rgba(203, 90, 66, 1);
+}
+
+.title {
+	text-align: center;
+}
+
+.message-logged-out .button {
+	height: 4vh;
+	padding-top: 3vh;
+}
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+/* GENERAL STYLES END */
+
+/* GENERAL GALLERY STYLES */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  min-height: calc(100vh - 120px);
+}
+
+.wrapper > div {
+  padding: 1rem;
+  margin: 0.5rem;
+  font-size: 1rem;
+}
+
+.sidebar {
+	background-image: url("../img/sidebar4.png");
+	background-size: contain;
+}
+
+.sidebar > div {
+	color: black;
+	padding: 0.5rem;
+	margin-top: 5rem;
+	top: 0;
+	position: sticky;
+}
+
+#grid-header {
+	grid-column: 1/4;
+	align-self: start;
+}
+
+/* GENERAL GALLERY STYLES END */
+
+/* TAKE PICTURE PAGE */
+
+#photo_div {
+	height: 60vh;
+	grid-column: 1/2;
+	position: relative;
+}
+
+#player {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+}
+
+#preview {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+}
+
+.icons {
+	height: 10vw;
+}
+
+.take-picture-layout {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	grid-auto-rows: min-content;
+}
+
+#image-options {
+	display: grid;
+	grid-template-columns: 1fr;
+	height: 55vh;
+	overflow: auto;
+	margin-left: 1rem;
+}
+
+#image-options > input{
+	visibility:hidden;
+}
+
+#capture {
+	grid-column: 1/2;
+	height: 4vh;
+}
+
+.upload {
+	grid-column: 1/2;
+}
+
+.upload > form > button {
+	width: 15vw;
+}
+
+#thumbnails {
+	grid-column: 1/2;
+	display: grid;grid-template-columns: repeat(2, 1fr);
+  	grid-auto-rows: 20rem;
+  	grid-gap: 1rem;
+}
+
+.thumbnail-pics {
+	width: 25vw;
+}
+
+/* TAKE PICTURE PAGE END*/
+
+/* MAIN GALLERY DESIGN */
+
+.container {
+	max-width: 70vw;
+}
+
+.main-img {
+	display: grid;
+	grid-template-columns: 4fr 2fr;
+	grid-gap: 1rem;
+	margin: 1rem;
+	background-color: #fff6f4;
+}
+
+.main-img img,
+#images img {
+	width: 100%;
+}
+
+#images {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1rem;
+}
+
+/* MAIN GALLERY DESIGN END */
+
+/* LIKES DESIGN */
+
+.picture-like {
+	display: grid;
+/*	grid-gap: 1rem;*/
+}
+
+.hidden {
+	display: none;
+}
+
+#like img {
+	width: 2.6vh;
+}
+
+#like {
+	width: 12vw;
+	max-height: 5vh;
+	background-color: #fff6f4;
+	margin: 0;
+}
+
+#amount_of_likes {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin: 1rem;
+}
+
+#amount_of_likes div:nth-child(2) {
+	font-size: 2.2vh;
+	text-align: left;
+	margin-left: -1rem;
+}
+
+#amount_of_likes img {
+	text-align: left;
+}
+
+/* LIKES DESIGN END*/
+
+/* COMMENTS DESIGN */
+
+#picture-by {
+	margin: 0.5rem;
+	text-transform: uppercase;
+}
+
+.new_comment {
+	align-self: start;
+}
+
+.new_comment textarea{
+	width: 90%;
+	margin: 0.8rem;
+	height: 8vh;
+	padding: 0.2rem;
+}
+
+#comment {
+	align-self: start;
+}
+
+#comments_texts {
+	display: grid;
+	grid-auto-rows: min-content;
+	grid-gap: 0.5rem;
+	overflow: auto;
+	height: 29vh;
+}
+
+#comments_texts div {
+	margin-left: 0.5rem;
+	background-color: #fffaf9;
+	font-size: 1vw;
+}
+
+/* COMMENTS DESIGN END*/
+
+/* OTHER PAGES DESIGN START */
+
+.text-box {
+	width: 20vw;
+	margin: 0 auto;
+	border: #e0d8d7 0.1rem solid;
+	padding: 1rem;
+	background-color: #fffaf9;
+}
+
+.text-box .button{
+	width: 100%;
+}
+
+/* OTHER PAGES DESIGN END */
