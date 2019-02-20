@@ -59,7 +59,7 @@ if ($_POST["submit"] == "OK") {
 	$message = "<strong>Hello, ".$login."!</strong><br>
                         Thank you for registration in our application. There is just one more step left for you to fully experience the app.<br>
                         Please, click on the link below:<br>
-                        <a href='https://kvilnacamagru.000webhostapp.com/".$dir."/validate.php?login=".$login."&key=".$validate."'>Verify my email</a><br>
+                        <a href='https://kvilnacamagru.000webhostapp.com/validate.php?login=".$login."&key=".$validate."'>Verify my email</a><br>
                         If you got this letter by mistake, please, ignore it.<br>
                         Have a good day!";
 

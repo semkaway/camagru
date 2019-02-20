@@ -31,7 +31,7 @@
             $dir = basename(__DIR__);
             $message = "<strong>Hello!</strong><br>
                         Here is a link to recover your password:<br>
-                        <a href='https://kvilnacamagru.000webhostapp.com/".$dir."/recover.php?email=".$_POST["email"]."&key=".$recover."'>Recover my password</a><br>
+                        <a href='https://kvilnacamagru.000webhostapp.com/recover.php?email=".$_POST["email"]."&key=".$recover."'>Recover my password</a><br>
                         If you got this letter by mistake, please, ignore it.<br>
                         Have a good day!";
             send_mail($_POST["email"], $mail_subject, $message);
